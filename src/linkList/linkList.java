@@ -168,9 +168,9 @@ class LinklIstApp {
 		thelist.insertLast(20, 600);
 		thelist.insertLast(30, 700);
 		thelist.reverseLinklist();
-//		thelist.insertAtPosition(40, 800,3);
-//		
-//		thelist.delete(800);
+		thelist.insertAtPosition(40, 800,3);
+		
+		thelist.delete(800);
 		thelist.displayList(); // display list
 
 		Link find = thelist.find(400);
@@ -185,5 +185,6 @@ class LinklIstApp {
 		} else
 			System.out.println("Can't delete link list");
 		thelist.displayList();
+		thelist.reverseLinklist();
 	}
 }
