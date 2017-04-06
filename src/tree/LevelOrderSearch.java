@@ -8,7 +8,6 @@
  * 
  * */
 
-
 package tree;
 
 import java.util.LinkedList;
@@ -24,6 +23,7 @@ class Link {
 		data = item;
 		left = null;
 		right = null;
+
 	}
 }
 
@@ -33,38 +33,69 @@ public class LevelOrderSearch {
 	public void levelOrderSearch() {
 		Queue<Link> queue = new LinkedList<Link>();
 		Link temp = root;
+
 		while (temp != null) {
 			displayNode(temp);
 			if (temp.left != null) {
+
 				queue.add(temp.left);
+
 			}
 			if (temp.right != null) {
+
 				queue.add(temp.right);
+
 			}
-			temp=queue.poll();
+			temp = queue.poll();
 		}
 	}
 
+	public static int height(Link root) {
+		if (root == null) {
+			return 0;
+		}
+		int leftHeight = height(root.left);
+		int rightHeight = height(root.right);
+		return 1+max(leftHeight, rightHeight);
+
+	}
+
+	static int max(int a, int b) {
+		if (a == b) {
+			return a;
+		} else if (a > b) {
+			return a;
+		} else {
+			return b;
+		}
+
+	}
+
 	public void displayNode(Link curr) {
-		System.out.print(" "+curr.data+ " ");
+
+		System.out.print(" " + curr.data + " ");
+
 	}
 
 }
-class levelOrderSearchApp{
+
+class levelOrderSearchApp {
 	public static void main(String[] args) {
-		LevelOrderSearch search=new LevelOrderSearch();
-		search.root=new Link(1);
-		search.root.left=new Link(2);
-		search.root.right=new Link(3);
-		search.root.left.left=new Link(4);
-		search.root.left.right=new Link(5);
-		search.root.right.left=new Link(6);
-		search.root.right.right=new Link(7);
-		search.root.left.left.left=new Link(8);
-		search.root.left.left.right=new Link(9);
-		search.root.left.right.left=new Link(10);
-		search.root.left.right.right=new Link(11);
+		LevelOrderSearch search = new LevelOrderSearch();
+		search.root = new Link(1);
+		search.root.left = new Link(2);
+		search.root.right = new Link(3);
+		search.root.left.left = new Link(4);
+		search.root.left.right = new Link(5);
+		search.root.right.left = new Link(6);
+		search.root.right.right = new Link(7);
+		search.root.left.left.left = new Link(8);
+		search.root.left.left.right = new Link(9);
+		search.root.left.right.left = new Link(10);
+		search.root.left.right.right = new Link(11);
 		System.out.println("Level order traversal of binary tree is - ");
 		search.levelOrderSearch();
+		int height = search.height(search.root);
+		System.out.println("height of tree is" + " " + height);
 	}
 }
